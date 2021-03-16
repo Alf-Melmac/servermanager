@@ -17,11 +17,13 @@ import static de.webalf.servermanager.model.Constants.EXECUTE_AND_TERMINATE;
 @Getter
 @AllArgsConstructor
 public enum Server {
-	TEST(new String[]{CMD_EXE, EXECUTE_AND_TERMINATE, "CALL \"Test File.lnk\""}, new String[]{CMD_EXE, EXECUTE_AND_TERMINATE, "CALL test.bat"}, "test"),
-	ARMA(new String[]{CMD_EXE, EXECUTE_AND_TERMINATE, "CALL \"Server Autostart.lnk\""}, new String[]{CMD_EXE, EXECUTE_AND_TERMINATE, "CALL \"Server Autostop.lnk\""}, "185.232.71.213:2302");
+	TEST(new String[]{CMD_EXE, EXECUTE_AND_TERMINATE, "CALL \"Test File.lnk\""}, "test"),
+	ARMA(new String[]{CMD_EXE, EXECUTE_AND_TERMINATE, "CALL \"03_ServerNeustart.bat - Verknüpfung.lnk\""}, "185.232.71.213"),
+	ARMA1(new String[]{CMD_EXE, EXECUTE_AND_TERMINATE, "CALL \"13_ServerNeustart.bat - Verknüpfung.lnk\""}, "185.232.71.213:2302"),
+	ARMA2(new String[]{CMD_EXE, EXECUTE_AND_TERMINATE, "CALL \"23_ServerNeustart.bat - Verknüpfung.lnk\""}, "185.232.71.213:2308"),
+	ARMA3(new String[]{CMD_EXE, EXECUTE_AND_TERMINATE, "CALL \"33_ServerNeustart.bat - Verknüpfung.lnk\""}, "185.232.71.213:2316");
 
-	private final String[] startFilePath;
-	private final String[] stopFilePath;
+	private final String[] restartFilePath;
 	private final String ip;
 
 	@Getter

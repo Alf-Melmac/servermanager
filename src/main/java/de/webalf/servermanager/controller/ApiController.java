@@ -21,12 +21,11 @@ import static de.webalf.servermanager.controller.Urls.API;
 @Slf4j
 public class ApiController {
 
-	@PutMapping("/{server}/{start}")
-	public ResponseEntity<Boolean> putServerToggle(@PathVariable Server server,
-												   @PathVariable boolean start) {
-		log.trace("putServerToggle: " + server + " " + start);
+	@PutMapping("/{server}")
+	public ResponseEntity<Boolean> putServerRestart(@PathVariable Server server) {
+		log.trace("putServerRestart: " + server);
 
-		final Result result = ServerService.toggleServer(server, start);
+		final Result result = ServerService.restartServer(server);
 		return new ResponseEntity<>(result.isExitCode(), result.getStatus());
 	}
 

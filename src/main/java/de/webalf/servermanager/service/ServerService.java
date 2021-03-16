@@ -33,31 +33,22 @@ public class ServerService {
 	}
 
 	/**
-	 * Executes the matching command for the given {@link Server} and command to execute.
-	 * A command can only be executed, if 5 minutes passed since the last execution.
+	 * Restarts the given {@link Server}.
+	 * A command can only be executed, if 15 minutes passed since the last execution.
 	 *
 	 * @param server server that should be toggled
-	 * @param start  start or stop script of the server
 	 */
-	public static Result toggleServer(Server server, boolean start) {
+	public static Result restartServer(Server server) {
 		if (lastExecution.containsKey(server)) {
-			if (LocalDateTime.now().minusMinutes(5).isBefore(lastExecution.get(server))) {
+			if (LocalDateTime.now().minusMinutes(15).isBefore(lastExecution.get(server))) {
 				return Result.builder().status(HttpStatus.TOO_EARLY).exitCode(false).build();
 			}
 		} else {
 			lastExecution.put(server, LocalDateTime.now());
 		}
 
-		setCommand(server, start);
+		PROCESS_BUILDER.command(server.getRestartFilePath());
 		return execute();
-	}
-
-	private static void setCommand(Server server, boolean start) {
-		if (start) {
-			PROCESS_BUILDER.command(server.getStartFilePath());
-		} else {
-			PROCESS_BUILDER.command(server.getStopFilePath());
-		}
 	}
 
 	private static Result execute() {
