@@ -11,7 +11,7 @@
 
 	<groupId>de.webalf</groupId>
 	<artifactId>servermanager</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<name>servermanager</name>
 	<description>Application to manage server via api</description>
 
